@@ -1,142 +1,168 @@
+/* Import Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Amatic+SC&display=swap");
+
+/* Root Variables */
+:root {
+    --primary-color: #1B98E0;
+    --secondary-color: #59c3c3;
+    --text-dark: #333;
+    --text-light: #ebebeb;
+    --primary-font: Arial, Helvetica, sans-serif;
+    --secondary-font: "Amatic SC";
+}
+
 /* Global Styles */
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--primary-font);
+    color: var(--text-dark);
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    background-color: #f9f9f9;
-    color: #333;
 }
 
-/* Header Styles */
-header {
-    background-color: #1B98E0;
-    color: #fff;
+header, footer {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    text-align: center;
     padding: 10px;
-    text-align: center;
 }
 
-.logo img {
-    width: 50px;
-    height: 50px;
+header img {
+    max-width: 50px;
     vertical-align: middle;
-    max-width: 100%;
 }
 
-.logo h1 {
-    display: inline-block;
-    margin-left: 10px;
-    font-family: 'Amatic SC', cursive; /* Use a different accessible font here */
-    font-size: 2em;
+header h1 {
+    display: inline;
+    font-family: var(--secondary-font);
 }
 
-.search-form {
-    margin: 20px auto;
-    text-align: center;
-}
-
-.search-form input[type="text"] {
-    padding: 5px;
-    width: 70%;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-}
-
-.search-form button {
-    padding: 5px 10px;
-    border: none;
-    background-color: #59c3c3;
-    color: #fff;
-    border-radius: 5px;
-    cursor: pointer;
-}
-
-/* Main Styles */
 main {
     padding: 20px;
 }
-.recipe {
-    display: grid;
-    grid-template-columns: auto 1fr; /* First column auto for the image, second column takes remaining space */
-    grid-gap: 10px; /* Gap between grid items */
-    align-items: start; /* Align items to the start of each row */
+
+form {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
 }
 
-/* Adjust the width of the image and align it to the left */
-.recipe img {
-    width: 100%;
-    height: auto;
-}
-
-/* Stack the title and rating on top of each other */
-.title-rating {
-    margin-bottom: 10px; /* Add some space between the title-rating and the description */
-}
-
-/* Ensure the description is below the title and rating */
-.description {
-    grid-column: 2; /* Place the description in the second column */
-    grid-row: 3; /* Place the description in the third row */
-}
-.rating {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-}
-
-.icon-star {
-    color: #FFD700;
-}
-
-.icon-star-empty {
-    color: #ccc;
-}
-
-.description {
-    display: none; /* Hide description on small screens */
-}
-
-/* Footer Styles */
-footer {
-    background-color: #1B98E0;
-    color: #fff;
+form input[type="text"] {
+    flex-grow: 1;
     padding: 10px;
+}
+
+form button {
+    background-color: var(--secondary-color);
+    border: none;
+    padding: 10px;
+}
+
+.recipe {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
     text-align: center;
 }
 
-.attribution {
-    font-size: 0.6em; /* Reduce size of attribution link */
-}
-
-.social {
-    margin-top: 10px;
-}
-
-.social img {
-    width: 30px;
-    height: 30px;
-    margin-right: 5px;
+.recipe img {
     max-width: 100%;
 }
 
-/* Media Queries for Responsive Design */
-@media (min-width: 600px) {
-    .recipe {
+.tags {
+    display: flex;
+    justify-content: center;
+    margin: 10px 0;
+}
+
+.tags span {
+    background-color: var(--secondary-color);
+    padding: 5px;
+    margin-right: 5px;
+    border-radius: 5px;
+}
+
+.rating {
+    font-size: 1.5em;
+}
+
+footer p, .social {
+    font-size: 0.8em; /* Adjusted font size for social media icons */
+    text-align: center; /* Ensure center alignment */
+}
+
+.social {
+    justify-content: center;
+    margin-top: 10px;
+}
+
+button img {
+    width: 50px;
+    height: 50px;
+   }
+
+.social a {
+    margin: 0 10px; /* Increased margin for better spacing */
+}
+
+.social img {
+    max-width: 40px; /* Increased size of social media icons */
+    vertical-align: middle;
+}
+
+/* Small Screen Layout */
+@media (max-width: 767px) {
+    main {
         display: flex;
+        flex-direction: column;
         align-items: center;
     }
 
-    .description {
-        display: block; /* Show description on wider screens */
-    }
-}
-
-@media (min-width: 960px) {
-    body {
-        max-width: 960px;
-        margin: 0 auto;
+    form {
+        width: 100%;
     }
 
     .recipe {
+        width: 100%;
+    }
+}
+
+/* Large Screen Layout */
+@media (min-width: 768px) {
+    header, footer {
+        padding: 20px;
+    }
+
+    main {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        gap: 20px;
+        align-items: start;
+    }
+
+    form {
+        grid-column: span 2;
+        display: flex;
         justify-content: space-between;
+        margin-bottom: 20px;
+    }
+
+    .recipe {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        text-align: left;
+    }
+
+    .recipe img {
+        max-width: 50%;
+        margin-right: 20px;
+    }
+
+    .tags {
+        justify-content: flex-start;
+    }
+
+    .social {
+        justify-content: flex-end;
     }
 }
